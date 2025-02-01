@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "110911338010",
+    "project_id": "chosn-258ec",
+    "storage_bucket": "chosn-258ec.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:110911338010:android:a5ae94ddf385dda4b583a3",
+        "android_client_info": {
+          "package_name": "com.example.chosn_test"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsneJFzBTVOukEdu6l3JapLaSY8vk0Voc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

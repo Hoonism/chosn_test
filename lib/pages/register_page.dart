@@ -2,6 +2,8 @@ import "package:chosn_test/components/button.dart";
 import "package:chosn_test/components/textfield.dart";
 import "package:flutter/material.dart";
 
+import "../auth/auth_service.dart";
+
 class RegisterPage extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _pwController = TextEditingController();
@@ -11,33 +13,33 @@ class RegisterPage extends StatelessWidget {
 
   RegisterPage({super.key, required this.onTap});
 
-//   void register(BuildContext context) {
-//     final _auth = AuthService();
+  void register(BuildContext context) {
+    final _auth = AuthService();
 
-// // passwords match
-//     if (_pwController.text == _confirmPwController.text) {
-//       try {
-//         _auth.signUpWithEmailPassword(
-//           _emailController.text,
-//           _pwController.text,
-//         );
-//       } catch (e) {
-//         showDialog(
-//           context: context,
-//           builder: (context) => AlertDialog(
-//             title: Text(e.toString()),
-//           ),
-//         );
-//       }
-//     } else {
-//       showDialog(
-//         context: context,
-//         builder: (context) => const AlertDialog(
-//           title: Text("Passwords don't match!"),
-//         ),
-//       );
-//     }
-//   }
+// passwords match
+    if (_pwController.text == _confirmPwController.text) {
+      try {
+        _auth.signUpWithEmailPassword(
+          _emailController.text,
+          _pwController.text,
+        );
+      } catch (e) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text(e.toString()),
+          ),
+        );
+      }
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) => const AlertDialog(
+          title: Text("Passwords don't match!"),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +84,7 @@ class RegisterPage extends StatelessWidget {
             ),
             // login
             const SizedBox(height: 20),
-            MyButton(text: "Register", onTap: () => {}),
+            MyButton(text: "Register", onTap: () => register(context)),
 
             // register
             const SizedBox(height: 20),

@@ -1,3 +1,4 @@
+import "package:chosn_test/auth/auth_service.dart";
 import "package:chosn_test/components/button.dart";
 import "package:chosn_test/components/textfield.dart";
 import "package:flutter/material.dart";
@@ -11,7 +12,21 @@ class LoginPage extends StatelessWidget {
   LoginPage({super.key, required this.onTap});
 
   void login(BuildContext context) async {
-    ;
+    final authService = AuthService();
+
+    try {
+      await authService.signInWithEmailPassword(
+        _emailController.text,
+        _pwController.text,
+      );
+    } catch (e) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text(e.toString()),
+        ),
+      );
+    }
   }
 
   @override
