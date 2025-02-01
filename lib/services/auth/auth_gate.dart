@@ -1,4 +1,4 @@
-import 'package:chosn_test/auth/login_register.dart';
+import 'package:chosn_test/services/auth/login_register.dart';
 import 'package:chosn_test/pages/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

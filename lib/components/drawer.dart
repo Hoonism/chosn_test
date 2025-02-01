@@ -1,4 +1,4 @@
-import 'package:chosn_test/auth/auth_service.dart';
+import 'package:chosn_test/services/auth/auth_service.dart';
 import 'package:chosn_test/pages/settings_page.dart';
 import 'package:flutter/material.dart';
 
