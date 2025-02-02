@@ -21,10 +21,12 @@ class ChatService {
 
   // send message
   Future<void> sendMessage(String receiverID, message) async {
+    // get current user info
     final String currentUserID = _auth.currentUser!.uid;
     final String currentUserEmail = _auth.currentUser!.email!;
     final Timestamp timestamp = Timestamp.now();
 
+    // create a new message
     Message newMessage = Message(
       senderID: currentUserEmail,
       senderEmail: currentUserID,
@@ -42,5 +44,19 @@ class ChatService {
         .doc(chatRoomID)
         .collection("messages")
         .add(newMessage.toMap());
+  }
+
+  // getting messages
+  Stream<QuerySnapshot> getMessages(String userID, otherUserID) {
+    List<String> ids = [userID, otherUserID];
+    ids.sort();
+    String chatRoomID = ids.join('_');
+
+    return _firestore
+        .collection("chat_rooms")
+        .doc(chatRoomID)
+        .collection("messages")
+        .orderBy("timestamp", descending: false)
+        .snapshots();
   }
 }
