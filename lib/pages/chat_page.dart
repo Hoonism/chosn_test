@@ -1,3 +1,4 @@
+import 'package:chosn_test/components/chat_bubble.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -71,24 +72,55 @@ class ChatPage extends StatelessWidget {
   Widget _buildMessageItem(DocumentSnapshot doc) {
     Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
 
-    return Text(data["message"]);
+    // is current user
+    bool isCurrentUser = data['senderID'] == _authService.getCurrentUser()!.uid;
+
+    // align message to the right if sender is the current user, otherwise left
+    var alignment =
+        isCurrentUser ? Alignment.centerRight : Alignment.centerLeft;
+    return Container(
+      alignment: alignment,
+      child: Column(
+        crossAxisAlignment:
+            isCurrentUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+        children: [
+          ChatBubble(
+            message: data["message"],
+            isCurrentUser: isCurrentUser,
+          ),
+        ],
+      ),
+    );
   }
 
   Widget _buildUserInput() {
-    return Row(
-      children: [
-        Expanded(
-          child: MyTextField(
-            controller: _messageController,
-            hintText: "Type a message",
-            obscure: false,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 35.0),
+      child: Row(
+        children: [
+          // textfield
+          Expanded(
+            child: MyTextField(
+              controller: _messageController,
+              hintText: "Type a message",
+              obscure: false,
+            ),
           ),
-        ),
-        IconButton(
-          onPressed: sendMessage,
-          icon: const Icon(Icons.arrow_upward),
-        )
-      ],
+
+          // send button
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.lightGreen,
+              shape: BoxShape.circle,
+            ),
+            margin: const EdgeInsets.only(right: 20),
+            child: IconButton(
+              onPressed: sendMessage,
+              icon: const Icon(Icons.arrow_upward),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
