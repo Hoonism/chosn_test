@@ -5,6 +5,7 @@ import 'package:chosn_test/services/auth/auth_service.dart';
 // import 'package:chosn_test/components/drawer.dart';
 // import 'package:chosn_test/components/journal_tile.dart';
 import 'package:flutter/material.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import '../components/drawer.dart';
 import '../components/journal_tile.dart';
 import '../services/chat/chat_service.dart';
@@ -27,7 +28,6 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Home"),
       ),
-      drawer: const MyDrawer(),
       body: _buildUserList(),
     );
   }
